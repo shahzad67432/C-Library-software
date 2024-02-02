@@ -11,7 +11,7 @@ string ibans[MAX_BOOKS] = {"10", "20", "30", "40"};
 int publishingYears[MAX_BOOKS] = {1990, 1995, 2000, 1992};
 int editions[MAX_BOOKS] = {1, 2, 3, 4};
 double prices[MAX_BOOKS] = {100.0, 150.0, 120.0, 500.0};
-int quantities[MAX_BOOKS] = {4, 5, 6, 4};
+int quantities[MAX_BOOKS] = {1, 5, 6, 4};
 
 string personType;
 int rollNo, age;
@@ -93,14 +93,19 @@ int main() {
         cin >> choice;
 
         if (choice == 'y' || choice == 'Y') {
-            int quantity;
-            cout << "Enter How Many Copies of the Books You Want To Issue: ";
-            cin >> quantity;
+            if(quantities[bookIndex] <= 1){
+                cout<< "not enough copies available for this book \n";
+            }
+            else{
+                int quantity;
+                cout << "Enter How Many Copies of the Books You Want To Issue: ";
+                cin >> quantity;
 
-            if (quantities[bookIndex] > 0 && quantity <= quantities[bookIndex]) {
-                issueBook(bookIndex, quantity);
-            } else {
-                cout << "Invalid Quantity or Not Enough Copies Available.\n";
+                if (quantities[bookIndex] > 0 && quantity <= quantities[bookIndex]) {
+                    issueBook(bookIndex, quantity);
+                } else {
+                    cout << "Invalid Quantity or Not Enough Copies Available.\n";
+                }
             }
         } else if (choice == 'n' || choice == 'N') {
             int quantity;
